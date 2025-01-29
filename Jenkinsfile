@@ -3,14 +3,14 @@ pipeline {
     stages {
         stage ("Build") {
             steps {
-                sh 'docker build -t shaikmustafa/abinay:bank'
+                sh 'docker build -t shaikmustafa/abinay:bank .'
             }
         }
         stage ("Push") {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub') {
-                        sh 'docker push shaikmustafa/abinay:bank .'
+                        sh 'docker push shaikmustafa/abinay:bank'
                     }
                 }
             }
