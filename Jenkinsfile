@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub') {
-                        sh 'docker push shaikmustafa/abinay:train'
+                        sh 'docker push shaikmustafa/abinay:train .'
                     }
                 }
             }
