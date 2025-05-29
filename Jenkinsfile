@@ -3,21 +3,21 @@ pipeline {
     stages {
         stage ("Build") {
             steps {
-                sh 'docker build -t shaikmustafa/abinay:bus .'
+                sh 'docker build -t reddy0314/abinay:bus .'
             }
         }
         stage ("Push") {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'dockerhub') {
-                        sh 'docker push shaikmustafa/abinay:bus'
+                    withDockerRegistry(credentialsId: 'dock-pass') {
+                        sh 'docker push reddy0314/abinay:bus'
                     }
                 }
             }
         }
         stage ("Deploy") {
             steps {
-                sh 'docker run -itd --name bus -p 8888:80 shaikmustafa/abinay:bus'
+                sh 'docker run -itd --name bus -p 8888:80 reddy0314/abinay:bus'
             }
         }
     }
