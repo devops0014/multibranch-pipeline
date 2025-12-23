@@ -18,7 +18,8 @@ pipeline {
                     sh 'docker push naveenk96/mbranch:train'
                 }
             }
-        }
+           }
+        }  
         stage ("Deploy") {
             steps {
                 sh 'docker run -itd --name train -p 9999:80 naveenk96/mbranch:train'
