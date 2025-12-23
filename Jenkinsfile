@@ -12,8 +12,11 @@ pipeline {
             }
         }
         stage ("Push") {
-            steps {
-                sh 'docker push naveenk96/mbranch:bus'
+             steps {
+                script {
+                withDockerRegistry(credentialsId: 'docker') {
+                    sh 'docker push naveenk96/mbranch:bus'
+                }
             }
         }
         stage ("Deploy") {
