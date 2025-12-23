@@ -11,13 +11,15 @@ pipeline {
                sh 'docker tag bank naveenk96/mbranch:bank'
             }
         }
+        stage ("push") {
          steps {
                 script {
                 withDockerRegistry(credentialsId: 'docker') {
                     sh 'docker push naveenk96/mbranch:bank'
                 }
             }
-        }
+          }
+        }     
         stage ("Deploy") {
             steps {
                 sh 'docker run -itd --name bankcont -p 4455:80 naveenk96/mbranch:bank'
