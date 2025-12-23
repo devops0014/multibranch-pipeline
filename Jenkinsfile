@@ -3,12 +3,22 @@ pipeline {
     stages {
         stage ("Build") {
             steps {
-                sh 'docker build -t shaikmustafa/abinay:train .'
+                sh 'docker build -t train .'
+            }
+        }
+        stage('Tag') {
+            steps {
+               sh 'docker tag bank naveenk96/mbranch:train'
+            }
+        }
+        stage ("Push") {
+            steps {
+                sh 'docker push naveenk96/mbranch:train'
             }
         }
         stage ("Deploy") {
             steps {
-                sh 'docker run -itd --name train -p 9999:80 shaikmustafa/abinay:train'
+                sh 'docker run -itd --name train -p 9999:80 naveenk96/mbranch:train'
             }
         }
     }
